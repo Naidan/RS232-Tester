@@ -1,0 +1,39 @@
+1 Layer			2 Layer		3 Layer
+RS232			TX			Paro
+							TSS
+							JSON
+							XML
+							NEMA
+				RX			9600
+							115200
+				LOOP BACK	
+		
+RS485			TX			JSON
+							XML
+							NEMA
+				RX			9600
+							115200
+				LOOP BACK	
+		
+Analog	Read	
+		
+LOG				Serial		9600
+							115200
+				Analog	
+				4 - 20	
+
+
+*****************************************************************
+ESP32 PINOUT
+
+SCL - 36 - G22
+SDA - 33 - G21
+
+TX - 35 - TXD
+RX - 34 - RXD
+
+SW1 - 16
+SW2 - 17
+SW3 - 05
+SW4 - 25
+SW5 - 27
