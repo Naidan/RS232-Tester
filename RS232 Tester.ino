@@ -22,7 +22,7 @@
  //Oled Display settings
 #define SCREEN_WIDTH 128 // OLED display width, in pixels
 #define SCREEN_HEIGHT 64 // OLED display height, in pixels
-#define OLED_RESET     14 // Reset pin #
+#define OLED_RESET     -1 // Reset pin #
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 #define SD_CS 5
@@ -73,20 +73,20 @@ void setup() {
     if (!SD.begin(SD_CS)) {
         Serial.println("Card Mount Failed");
         data = "Card Mount Failed";
-        return;
+        
     }
     uint8_t cardType = SD.cardType();
     if (cardType == CARD_NONE) {
         Serial.println("No SD card attached");
         data = "No SD card attached";
-        return;
+        
     }
     Serial.println("Initializing SD card...");
     data = "Initializing SD card...";
     if (!SD.begin(SD_CS)) {
         Serial.println("ERROR - SD card initialization failed!");
         data = "ERROR - SD card initialization failed!";
-        return;    // init failed
+            // init failed
     }
 
     // If the data.txt file doesn't exist
@@ -238,6 +238,9 @@ void loop() {
     display.setTextSize(1);      // Normal 1:1 pixel scale
     display.setCursor(0, 0);
     display.println(data);
+    if (digitalRead(sw5) == LOW) {
+        display.println("Data Saved");
+    }
     display.display();
 
     delay(500);

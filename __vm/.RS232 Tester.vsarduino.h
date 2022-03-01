@@ -15,16 +15,22 @@
 #define _VSARDUINO_H_
 #define __ESP32_esp32__
 #define __ESP32_ESP32__
-#define ESP_PLATFORM
 #define HAVE_CONFIG_H
-#define GCC_NOT_5_2_0 0
+#define UNITY_INCLUDE_CONFIG_H
 #define WITH_POSIX
+#define _GNU_SOURCE
+#define ESP_PLATFORM
+#define _POSIX_READER_WRITER_LOCKS
 #define F_CPU 240000000L
 #define ARDUINO 108013
 #define ARDUINO_ESP32_DEV
 #define ARDUINO_ARCH_ESP32
+#define ARDUINO_PARTITION_default
 #define ESP32
 #define CORE_DEBUG_LEVEL 0
+#define ARDUINO_RUNNING_CORE 1
+#define ARDUINO_EVENT_RUNNING_CORE 1
+#define ARDUINO_USB_CDC_ON_BOOT 0
 #define __cplusplus 201103L
 
 #define _Pragma(x)
@@ -51,7 +57,7 @@
 #define _Lockit
 #define __CLR_OR_THIS_CALL
 #define C4005
-#define _NEW
+//#define _NEW
 
 typedef bool _Bool;
 typedef int _read;
@@ -79,7 +85,8 @@ extern "C" void __cxa_pure_virtual() {;}
 
 typedef long __INTPTR_TYPE__ ;
 typedef long __UINTPTR_TYPE__ ;
-typedef long __SIZE_TYPE__ 	;
+//typedef long __SIZE_TYPE__ 	;
+#define __SIZE_TYPE__ unsigned int
 typedef long __PTRDIFF_TYPE__;
 
 typedef long pthread_t;
@@ -89,7 +96,10 @@ typedef long pthread_mutex_t;
 typedef long pthread_mutex_t;
 typedef long pthread_cond_t;
 
+#define __CHAR_BIT__ 1
 
+// Ensure ArduinoJSON Lib Intellisense works correctly
+#define ARDUINOJSON_ENABLE_STD_STREAM 0
 
 #include "arduino.h"
 #include <pins_arduino.h> 
